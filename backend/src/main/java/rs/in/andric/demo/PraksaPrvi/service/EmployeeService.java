@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import rs.in.andric.demo.PraksaPrvi.repository.EmployeeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,11 +21,24 @@ public class EmployeeService {
     }
 
     public Employee getEmpl(Integer id){
-        return employeeRepository.getOne(id);
+        Optional<Employee> empl = employeeRepository.findById(id);
+        if(!empl.isPresent()){
+            return new Employee();
+        }
+        return empl.get();
     }
 
-    public void addEmpl(Employee e){
-        employeeRepository.save(e);
+    public Employee addEmpl(Employee e){
+        return employeeRepository.save(e);
+    }
+
+    public Employee updateEmpl(Integer id, Employee employee){
+        employee.setId(id);
+        return employeeRepository.save(employee);
+    }
+
+    public void deleteEmpl(Integer id){
+        employeeRepository.deleteById(id);
     }
 
 
