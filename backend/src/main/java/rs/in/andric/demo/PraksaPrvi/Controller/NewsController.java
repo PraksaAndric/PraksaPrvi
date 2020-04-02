@@ -28,7 +28,8 @@ public class NewsController {
     @GetMapping("/nekilink")
     public News myNews(){
 //      String link = "https://edition.cnn.com/2020/04/02/economy/unemployment-benefits-coronavirus/index.html";
-        String link = "https://edition.cnn.com/2020/03/31/politics/donald-trump-coronavirus-politics-2020-election/index.html";
+  //      String link = "https://edition.cnn.com/2020/03/31/politics/donald-trump-coronavirus-politics-2020-election/index.html";
+        String link = "https://edition.cnn.com/2020/04/02/uk/uk-coronavirus-testing-criticism-intl-gbr/index.html";
         return newsService.obrada(link);
 
     }

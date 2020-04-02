@@ -18,6 +18,8 @@ public class Domain {
     private String param_date;
     @Column
     private String param_content;
+    @Column
+    private String param_container;
 
     public Integer getId() {
         return id;
@@ -57,5 +59,13 @@ public class Domain {
 
     public void setParam_content(String param_content) {
         this.param_content = param_content;
+    }
+
+    public String getParam_container() {
+        return param_container;
+    }
+
+    public void setParam_container(String param_container) {
+        this.param_container = param_container;
     }
 }

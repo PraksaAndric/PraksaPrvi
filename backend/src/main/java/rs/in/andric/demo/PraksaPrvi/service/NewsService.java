@@ -77,7 +77,7 @@ public class NewsService {
 
             document = Jsoup.connect(url).get();
 
-            Elements repositories= document.getElementsByClass("l-container");
+            Elements repositories= document.getElementsByClass(domain.getParam_container());
 
             Element repository =  repositories.get(0);
 
