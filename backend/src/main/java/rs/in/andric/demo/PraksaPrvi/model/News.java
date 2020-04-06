@@ -1,9 +1,6 @@
 package rs.in.andric.demo.PraksaPrvi.model;
 
-import javafx.scene.text.Text;
-
 import javax.persistence.*;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "news_table")
