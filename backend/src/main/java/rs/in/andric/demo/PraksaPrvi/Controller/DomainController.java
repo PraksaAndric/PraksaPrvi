@@ -16,35 +16,34 @@ public class DomainController {
     private DomainService domainService;
 
     @GetMapping("/all")
-    public List<Domain> getAll(){
-        return  domainService.getAll();
+    public List<Domain> getAll() {
+        return domainService.getAll();
     }
 
-    @GetMapping("/get/{name}")
-    public Domain getDomainByName(@PathVariable String name){
+    @GetMapping("/name/{name}")
+    public Domain getDomainByName(@PathVariable String name) {
         return domainService.getDomainByName(name);
     }
 
-    @GetMapping("/get1/{id}")
-    public Domain getDomainById(@PathVariable Integer id){
+    @GetMapping("/id/{id}")
+    public Domain getDomainById(@PathVariable Integer id) {
         return domainService.getDomainById(id);
     }
 
     @PostMapping("/add")
-    public Domain addDomain(@RequestBody Domain domain){
+    public Domain addDomain(@RequestBody Domain domain) {
         return domainService.addDomain(domain);
     }
 
-    @PutMapping("/update/{id}")
-    public Domain updateDomain(@PathVariable Integer id, @RequestBody Domain domain){
+    @PutMapping("/{id}")
+    public Domain updateDomain(@PathVariable Integer id, @RequestBody Domain domain) {
         return domainService.updateDomain(id, domain);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteDomain(@PathVariable Integer id){
+    @DeleteMapping("/{id}")
+    public void deleteDomain(@PathVariable Integer id) {
         domainService.deleteDomain(id);
     }
-
 
 
 }

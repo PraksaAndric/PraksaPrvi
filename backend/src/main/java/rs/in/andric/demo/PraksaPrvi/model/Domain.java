@@ -3,7 +3,7 @@ package rs.in.andric.demo.PraksaPrvi.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "domain_table")
+@Table(name = "domain")
 public class Domain {
 
     @Id
@@ -13,13 +13,13 @@ public class Domain {
     @Column(unique = true)
     private String name;
     @Column
-    private String param_title;
+    private String title;
     @Column
-    private String param_date;
+    private String date;
     @Column
-    private String param_content;
+    private String content;
     @Column
-    private String param_container;
+    private String container;
 
     public Integer getId() {
         return id;
@@ -37,35 +37,35 @@ public class Domain {
         this.name = name;
     }
 
-    public String getParam_title() {
-        return param_title;
+    public String getTitle() {
+        return title;
     }
 
-    public void setParam_title(String param_title) {
-        this.param_title = param_title;
+    public void setTitle(String param_title) {
+        this.title = param_title;
     }
 
-    public String getParam_date() {
-        return param_date;
+    public String getDate() {
+        return date;
     }
 
-    public void setParam_date(String param_date) {
-        this.param_date = param_date;
+    public void setDate(String param_date) {
+        this.date = param_date;
     }
 
-    public String getParam_content() {
-        return param_content;
+    public String getContent() {
+        return content;
     }
 
-    public void setParam_content(String param_content) {
-        this.param_content = param_content;
+    public void setContent(String param_content) {
+        this.content = param_content;
     }
 
-    public String getParam_container() {
-        return param_container;
+    public String getContainer() {
+        return container;
     }
 
-    public void setParam_container(String param_container) {
-        this.param_container = param_container;
+    public void setContainer(String param_container) {
+        this.container = param_container;
     }
 }

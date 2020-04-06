@@ -3,7 +3,7 @@ package rs.in.andric.demo.PraksaPrvi.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "news_table")
+@Table(name = "news")
 public class News {
 
     @Id
