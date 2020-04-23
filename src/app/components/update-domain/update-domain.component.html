@@ -1,36 +1,44 @@
-<h2>Update Domain</h2>
+<h2>Add Domain</h2>
 <div style="width: 400px;">
-    <form (ngSubmit) = "onSubmit()">
+    <form #domainForm="ngForm" (ngSubmit) = "onSubmit()" novalidate>
+        {{domainForm.value | json}}
+        <hr>
+        {{domain | json}}
         <div class="form-group">
             <label for="name">Name</label>
-            <!-- <input type="text" class="form-control" id="name" required [(ngModel)]="domain.name" name="name"> -->
+            <input  type="text" #name = "ngModel" [class.is-invalid] = "name.invalid && name.touched" class="form-control" 
+            id="name" required [(ngModel)]="domain.name" name="name">
+            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
 
         </div>
 
         <div class="form-group">
             <label for="name">Title</label>
-            <!-- <input type="text" class="form-control" id="title" required [(ngModel)]="domain.title" name="title"> -->
+            <input  type="text" #title = "ngModel" [class.is-invalid] = "title.invalid && title.touched" class="form-control" 
+            id="title" required [(ngModel)]="domain.title" name="title">
+            <small class="text-danger" [class.d-none]="title.valid || title.untouched">Title is required</small>
 
         </div>
 
         <div class="form-group">
             <label for="name">Date</label>
-            <!-- <input type="text" class="form-control" id="date" required [(ngModel)]="domain.date" name="date"> -->
-
+            <input  type="text"  #date = "ngModel" [class.is-invalid] = "date.invalid && date.touched" class="form-control" id="date" required [(ngModel)]="domain.date" name="date">
+            <small class="text-danger" [class.d-none]="date.valid || date.untouched">Date is required</small>
         </div>
 
         <div class="form-group">
             <label for="name">Content</label>
-            <!-- <input type="text" class="form-control" id="content" required [(ngModel)]="domain.content" name="content"> -->
-
+            <input type="text"  #content = "ngModel" [class.is-invalid] = "content.invalid && content.touched" class="form-control" id="content" required [(ngModel)]="domain.content" name="content">
+            <small class="text-danger" [class.d-none]="content.valid || content.untouched">Content is required</small>
         </div>
 
         <div class="form-group">
             <label for="name">Container</label>
-            <!-- <input type="text" class="form-control" id="container" required [(ngModel)]="domain.container" name="container"> -->
-
+            <input  type="text"  #container = "ngModel" [class.is-invalid] = "container.invalid && container.touched" class="form-control" id="container" required [(ngModel)]="domain.container" name="container">
+            <small class="text-danger" [class.d-none]="container.valid || container.untouched">Container is required</small>
         </div>
 
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" [disabled] = "domainForm.form.invalid" class="btn btn-success">Submit</button>
     </form>
 </div>
+

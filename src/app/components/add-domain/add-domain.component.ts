@@ -17,6 +17,7 @@ export class AddDomainComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+  
   }
 
   addDomain(){
@@ -26,7 +27,6 @@ export class AddDomainComponent implements OnInit {
     );
     this.domain = new Domain();
     this.gotoList();
-
   }
 
   gotoList(){
@@ -34,7 +34,6 @@ export class AddDomainComponent implements OnInit {
   }
 
   onSubmit(){
-   
     this.addDomain();
   }
 

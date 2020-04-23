@@ -17,20 +17,18 @@ export class DomainListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    
+    this.domainService.refreshNeeded$.subscribe( () => {
+      this.listDomains();
+    });
     this.listDomains();
-
-   
   }
 
   listDomains(){
-  
      this.domainService.getDomainList().subscribe(
      data =>  {
       console.log(data);
        this.domains = data;
      }
-  
    );
   }
 
@@ -42,13 +40,10 @@ export class DomainListComponent implements OnInit {
       },
       error => console.log(error)
     );
-
   }
 
   updateEmployee(id:number){
-
     this.router.navigate(['update', id]);
-    
   }
 
 

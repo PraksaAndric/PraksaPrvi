@@ -9,6 +9,9 @@ import { DomainService } from './services/domain.service';
 import {Routes, RouterModule} from '@angular/router';
 import { UpdateDomainComponent } from './components/update-domain/update-domain.component';
 import { AddDomainComponent } from './components/add-domain/add-domain.component';
+import {FormsModule} from '@angular/forms';
+import { NewsComponent } from './components/news/news.component';
+import { NewsDetailsComponent } from './components/news-details/news-details.component';
 
 
 const routes: Routes = [
@@ -16,6 +19,8 @@ const routes: Routes = [
   {path : 'domains', component: DomainListComponent},
   {path : 'add' , component: AddDomainComponent},
   {path : 'update/:id' , component: UpdateDomainComponent},
+  {path : 'details/:id' , component: NewsDetailsComponent},
+  {path : 'news', component: NewsComponent},
   {path : '' , redirectTo:'/domains', pathMatch: 'full'},
   {path : '**' , redirectTo:'/domains', pathMatch: 'full'}
 
@@ -26,13 +31,15 @@ const routes: Routes = [
     AppComponent,
     DomainListComponent,
     UpdateDomainComponent,
-    AddDomainComponent
+    AddDomainComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
+    FormsModule
   ],
   providers: [DomainService],
   bootstrap: [AppComponent]

@@ -17,7 +17,7 @@ export class UpdateDomainComponent implements OnInit {
 
   constructor(private router: Router,
               private aroute: ActivatedRoute,
-              private domainService: DomainService) { }
+              private domainService: DomainService) { }         
 
   ngOnInit(): void {
    
