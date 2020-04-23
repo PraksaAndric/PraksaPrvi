@@ -8,14 +8,15 @@ import rs.in.andric.demo.PraksaPrvi.service.DomainService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/domain")
+@RequestMapping("/domains")
+@CrossOrigin("http://localhost:4200")
 public class DomainController {
 
 
     @Autowired
     private DomainService domainService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Domain> getAll() {
         return domainService.getAll();
     }
