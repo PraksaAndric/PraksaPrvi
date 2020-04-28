@@ -2,6 +2,7 @@ package rs.in.andric.demo.PraksaPrvi.Controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import rs.in.andric.demo.PraksaPrvi.model.News;
@@ -17,10 +18,12 @@ public class NewsController {
     @Autowired
     private NewsServiceImpl newsService;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/all")
     public List<News> scrapNews() {
         return newsService.getAll();
     }
+
 
     @GetMapping("/name/{id}")
     public News getNews(@PathVariable Integer id) {
