@@ -18,7 +18,7 @@ public class NewsController {
     @Autowired
     private NewsServiceImpl newsService;
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @GetMapping("/all")
     public List<News> scrapNews() {
         return newsService.getAll();

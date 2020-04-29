@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,14 +33,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.cors(); //za povezivanje za frontendom
+        http.cors(); //za povezivanje za frontendom
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/domains/**").authenticated()
-                .anyRequest().permitAll()
+                .antMatchers("/news/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .anyRequest().fullyAuthenticated()
                 .and()
-                .formLogin().permitAll().and().exceptionHandling().accessDeniedPage("/domains/accessdenied");
-
+                .httpBasic();
 
     }
 
