@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Domain } from '../common/domain';
 import {tap} from 'rxjs/operators';
@@ -33,12 +33,12 @@ export class DomainService {
   }
 
   deleteDomain(id:number):Observable<any>{
-    return this.httpClient.delete(`${this.baseUrl}/${id}`, {responseType : 'text'});
+    return this.httpClient.delete(`${this.baseUrl}/${id}`, { responseType : 'text'});
 
   }
 
   updateDomain(id:number, domain:Domain): Observable<Object>{
-    return this.httpClient.put(`${this.baseUrl}/${id}`, domain).pipe(
+   return this.httpClient.put(`${this.baseUrl}/${id}`, domain).pipe(
       tap(() => {
         this._refreshNeeded$.next();
       })

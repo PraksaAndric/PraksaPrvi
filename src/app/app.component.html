@@ -1,13 +1,19 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a routerLink="/domains" class="nav-link" routerLinkActive="active">Domain List</a>
+      <a *ngIf="loginService.isUserLoggedIn()" routerLink="/domains" class="nav-link" routerLinkActive="active">Domain List</a>
     </li>
     <li class="nav-item">
-      <a routerLink="/add" class="nav-link" routerLinkActive="active">Add Domain</a>
+      <a  *ngIf="loginService.isUserLoggedIn()" routerLink="/add" class="nav-link" routerLinkActive="active">Add Domain</a>
     </li>
     <li class="nav-item">
-      <a routerLink="/news" class="nav-link" routerLinkActive="active">User</a>
+      <a routerLink="/news" class="nav-link" routerLinkActive="active">News</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link" routerLinkActive="active">Login</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link" routerLinkActive="active">Logout</a>
     </li>
   </ul>
 </nav>
