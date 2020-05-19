@@ -1,0 +1,16 @@
+<h2>{{news.title}}</h2>
+<hr>
+<div class="alert alert-primary" role="alert"> 
+To start the audio  <a (click)="getAudio()" class="alert-link">CLICK HERE</a>
+</div>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" (click)="resume()" class="btn btn-primary">Resume</button>
+  <button type="button" (click)="pause()" class="btn btn-primary">Pause</button>
+  <button type="button" (click)="cancel()" class="btn btn-primary">Cancel</button>
+</div>
+<hr>
+<div class = "container">
+        <h5>{{news.date}}</h5>
+    <hr>
+  <label>{{news.content}}</label>
+</div>
