@@ -19,5 +19,5 @@ public interface NewsService {
 
     public News obrada(String url);
 
-    public void callVoice(String content);
+//    public void callVoice(String content);
 }

@@ -30,11 +30,11 @@ public class NewsController {
         return newsService.getNewsById(id);
     }
 
-    @GetMapping("/audio/{id}")
-    public void getAudio(@PathVariable Integer id){
-        News news = newsService.getNewsById(id);
-        newsService.callVoice(news.getContent());
-    }
+//    @GetMapping("/audio/{id}")
+//    public void getAudio(@PathVariable Integer id){
+//        News news = newsService.getNewsById(id);
+//        newsService.callVoice(news.getContent());
+//    }
 
     @GetMapping("/details")
     public News myNews(@RequestParam String url) {

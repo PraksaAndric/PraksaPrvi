@@ -1,7 +1,8 @@
 package rs.in.andric.demo.PraksaPrvi.service.impl;
 
-import com.sun.speech.freetts.Voice;
-import com.sun.speech.freetts.VoiceManager;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,8 +15,6 @@ import rs.in.andric.demo.PraksaPrvi.repository.DomainRepository;
 import rs.in.andric.demo.PraksaPrvi.repository.NewsRepository;
 import rs.in.andric.demo.PraksaPrvi.service.NewsService;
 
-import javax.speech.Central;
-import javax.speech.EngineException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,6 +23,8 @@ import java.util.Optional;
 
 @Service
 public class NewsServiceImpl implements NewsService {
+
+    private static Logger logger = LogManager.getLogger();
 
     @Autowired
     private NewsRepository newsRepository;
@@ -104,6 +105,8 @@ public class NewsServiceImpl implements NewsService {
 
             news.setDomain(domain);
 
+            logger.info("Added news");
+
             return newsRepository.save(news);
 
         } catch (IOException e) {
@@ -118,6 +121,7 @@ public class NewsServiceImpl implements NewsService {
         boolean hasNews = hasNewsWithUrl(url);
         if (hasNews) {
             Optional<News> news = newsRepository.findByUrl(url);
+            logger.info("Got news with id: "+news.get().getId());
             return news.get();
         }
 
@@ -127,32 +131,33 @@ public class NewsServiceImpl implements NewsService {
         if (!domain.isPresent()) {
             return new News();
         }
+        logger.info("Got domain with name: "+domain.get().getName());
 
         return scrap1(url, domain.get());
 
     }
 
-    public void callVoice(String content) {
-        try {
-            System.setProperty("logLevel", "OFF"); // INFO or WARN are also valid
-            System.setProperty("FreeTTSSynthEngineCentral", "com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");
-            System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-            // FixMe: Get Arctic voices working.
-            //System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_slt_arctic.ArcticVoiceDirectory");
-            Central.registerEngineCentral("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");
-        } catch (EngineException e) {
-            System.out.println("Unable to provide speech synthesis: " + e);
-            System.exit(1);
-        }
-
-        VoiceManager vm = VoiceManager.getInstance();
-        Voice voice = vm.getVoice("kevin16");
-
-        voice.allocate();
-        voice.speak(content);
-        voice.deallocate();
-
-    }
+//    public void callVoice(String content) {
+//        try {
+//            System.setProperty("logLevel", "OFF"); // INFO or WARN are also valid
+//            System.setProperty("FreeTTSSynthEngineCentral", "com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");
+//            System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+//            // FixMe: Get Arctic voices working.
+//            //System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_slt_arctic.ArcticVoiceDirectory");
+//            Central.registerEngineCentral("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");
+//        } catch (EngineException e) {
+//            System.out.println("Unable to provide speech synthesis: " + e);
+//            System.exit(1);
+//        }
+//
+//        VoiceManager vm = VoiceManager.getInstance();
+//        Voice voice = vm.getVoice("kevin16");
+//
+//        voice.allocate();
+//        voice.speak(content);
+//        voice.deallocate();
+//
+//    }
 
 
 }

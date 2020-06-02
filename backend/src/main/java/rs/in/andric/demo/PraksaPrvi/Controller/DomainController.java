@@ -1,5 +1,8 @@
 package rs.in.andric.demo.PraksaPrvi.Controller;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -19,12 +22,14 @@ public class DomainController {
     @Autowired
     private DomainService domainService;
 
+    private static Logger logger = LogManager.getLogger();
+
     @RequestMapping("/accessdenied")
     public String accessdenied() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("User '" + auth.getName() + "' attempted to access the protected URL: ");
-        System.out.println("auth : " + auth.isAuthenticated());
-        System.out.println("Role : " + auth.getAuthorities().toString());
+        logger.info("User '" + auth.getName() + "' attempted to access the protected URL: ");
+        logger.info("auth : " + auth.isAuthenticated());
+        logger.info("Role : " + auth.getAuthorities().toString());
         return auth.getAuthorities().toString();
     }
 
@@ -37,7 +42,6 @@ public class DomainController {
 
     @GetMapping("/name/{name}")
     public Domain getDomainByName(@PathVariable String name) {
-
         return domainService.getDomainByName(name);
     }
 
@@ -50,18 +54,21 @@ public class DomainController {
 
     @PostMapping("/add")
     public Domain addDomain(@RequestBody Domain domain) {
+        logger.info("Added domain with name: "+domain.getName());
         return domainService.addDomain(domain);
     }
 
 
     @PutMapping("/{id}")
     public Domain updateDomain(@PathVariable Integer id, @RequestBody Domain domain) {
+        logger.info("Updated domain with name: "+domain.getName());
         return domainService.updateDomain(id, domain);
     }
 
 
     @DeleteMapping("/{id}")
-    public void deleteDomain(@PathVariable Integer id) {
+    public void deleteDomain(@PathVariable Integer id)  {
+        logger.info("Deleted domain with id: "+id);
         domainService.deleteDomain(id);
     }
 
